@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --font-size-base: 18px;
+}
+
+* {
+  border-color: theme('colors.gray.200');
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: theme('colors.white');
+  color: theme('colors.gray.900');
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: theme('--font-size-base');
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark body {
+  background-color: theme('colors.gray.900');
+  color: theme('colors.gray.100');
+}
