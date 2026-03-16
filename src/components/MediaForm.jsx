@@ -172,7 +172,7 @@ export function MediaForm({ item, onSubmit, onCancel }) {
           <img
             src={formData.cover}
             alt="Vista previa"
-            className="w-24 h-36 object-cover rounded-md border border-gray-200"
+            className="w-24 h-36 object-cover rounded-md border border-gray-200 dark:border-gray-600"
             onError={(e) => {
               e.target.style.display = 'none'
             }}

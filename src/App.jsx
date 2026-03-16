@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation, useNavigate, Outlet } from 'react-router-dom'
 import { useMediaItems } from './hooks/useMediaItems'
+import { useTheme } from './hooks/useTheme'
 import { Button } from './components/ui/Button'
 import { MediaList } from './components/MediaList'
 import { LoginScreen } from './components/LoginScreen'
@@ -13,7 +14,7 @@ function Header({ user, onLogout, onOpenCreate, items, isDark, onToggleTheme }) 
   const isCreatePage = location.pathname === '/create'
 
   return (
-    <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+    <header className="bg-white dark:bg-gray-800 border-b-2 border-gray-300 dark:border-gray-700">
       <div className="max-w-4xl mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -21,7 +22,7 @@ function Header({ user, onLogout, onOpenCreate, items, isDark, onToggleTheme }) 
               <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
                 Media Tracker
               </h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                 {items.length} {items.length === 1 ? 'título' : 'títulos'}
               </p>
             </div>
@@ -34,7 +35,7 @@ function Header({ user, onLogout, onOpenCreate, items, isDark, onToggleTheme }) 
                 alt={user.name}
                 className="w-8 h-8 rounded-full"
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300">{user.name}</span>
+              <span className="text-sm text-gray-800 dark:text-gray-300">{user.name}</span>
             </div>
             <Button
               variant="ghost"
@@ -100,7 +101,8 @@ function Detail({ items, onUpdate, onDelete }) {
 function AppContent() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
-  const [isDark, setIsDark] = useState(true)
+  const [theme, , toggleTheme] = useTheme()
+  const isDark = theme === 'dark'
   
   const navigate = useNavigate()
 
@@ -120,13 +122,7 @@ function AppContent() {
     }
   }, [])
 
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }, [isDark])
+  // Theme is managed by useTheme; initial load applies class automatically
 
   async function handleLogin() {
     const mockUser = {
@@ -182,13 +178,13 @@ function AppContent() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-500 dark:text-gray-400">Cargando...</p>
+        <p className="text-gray-700 dark:text-gray-400">Cargando...</p>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
       <Routes>
         <Route 
           path="/" 
@@ -199,7 +195,7 @@ function AppContent() {
               onOpenCreate={() => navigate('/create')}
               items={items}
               isDark={isDark}
-              onToggleTheme={() => setIsDark(prev => !prev)}
+              onToggleTheme={toggleTheme}
             />
           }
         >

@@ -18,12 +18,12 @@ export function MediaItem({ item, onDelete, onStatusChange }) {
   }
 
   return (
-    <article className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+    <article className="bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 rounded-lg p-4 hover:border-gray-500 dark:hover:border-gray-600 transition-colors">
       <div className="flex gap-4">
         <img
           src={item.cover}
           alt={item.title}
-          className="w-20 h-28 object-cover rounded-md flex-shrink-0 bg-gray-100 dark:bg-gray-700"
+          className="w-20 h-28 object-cover rounded-md flex-shrink-0 bg-gray-200 dark:bg-gray-700"
           onError={(e) => {
             e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="112" viewBox="0 0 80 112"%3E%3Crect fill="%23e5e7eb" width="80" height="112"/%3E%3Ctext fill="%239ca3af" font-family="sans-serif" font-size="10" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3ENo imagen%3C/text%3E%3C/svg%3E'
           }}
@@ -35,12 +35,12 @@ export function MediaItem({ item, onDelete, onStatusChange }) {
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white truncate">
                 {item.title}
               </h3>
-              <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+              <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                 <span>{item.year}</span>
                 {item.platform && (
                   <>
                     <span>·</span>
-                    <span className="text-gray-600 dark:text-gray-300">{getPlatformLabel(item)}</span>
+                    <span className="text-gray-700 dark:text-gray-300">{getPlatformLabel(item)}</span>
                   </>
                 )}
               </div>
@@ -48,7 +48,7 @@ export function MediaItem({ item, onDelete, onStatusChange }) {
             <Badge status={item.status} />
           </div>
 
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+          <p className="mt-2 text-sm text-gray-700 dark:text-gray-400 line-clamp-2">
             {item.description || 'Sin descripción'}
           </p>
 
@@ -56,7 +56,7 @@ export function MediaItem({ item, onDelete, onStatusChange }) {
             <select
               value={item.status}
               onChange={(e) => onStatusChange(item.id, e.target.value)}
-              className="text-sm px-2 py-1 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+              className="text-sm px-2 py-1 border-2 border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-600 dark:focus:ring-gray-400"
               aria-label="Cambiar estado"
             >
               <option value={STATUS_TYPES.TO_WATCH}>Por ver</option>

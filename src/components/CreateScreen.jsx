@@ -96,7 +96,7 @@ export function CreateScreen({ onSubmit }) {
       <div className="mb-6">
         <button
           onClick={handleCancel}
-          className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white flex items-center gap-2"
+          className="text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white flex items-center gap-2"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -105,7 +105,7 @@ export function CreateScreen({ onSubmit }) {
         </button>
       </div>
 
-      <article className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+      <article className="bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden">
         <div className="p-6">
           <h1 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
             Añadir nuevo título
